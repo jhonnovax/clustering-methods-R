@@ -68,9 +68,9 @@ Q32=round(pc32$weights,2)
 Q32
 
 head(myData3)
-C1 <- -0.01*myData3[, 1]+0.42*myData3[, 2]+0.48*myData3[, 3]+0.00*myData3[,4]+0.00*myData3[,5]+0.00*myData3[,6]+0.00*myData3[,7]+0.38*myData3[,8]
-C2 <- 0.74*myData3[, 1]+0.02*myData3[, 2]+0.00*myData3[, 3]-0.34*myData3[,4]+0.56*myData3[,5]+0.09*myData3[,6]-0.05*myData3[,7]-0.03*myData3[,8]
-C3 <- -0.09*myData3[, 1]+0.00*myData3[, 2]+0.00*myData3[, 3]+0.42*myData3[,4]+0.24*myData3[,5]+0.50*myData3[,6]-0.71*myData3[,7]+0.01*myData3[,8]
+C1 <- 0.03*myData3[, 1]+0.42*myData3[, 2]+0.48*myData3[, 3]+0.01*myData3[,4]+0.02*myData3[,5]-0.01*myData3[,6]-0.01*myData3[,7]+0.39*myData3[,8]
+C2 <- -0.08*myData3[, 1]-0.06*myData3[, 2]-0.01*myData3[, 3]+0.33*myData3[,4]-0.03*myData3[,5]-0.66*myData3[,6]+0.61*myData3[,7]+0.08*myData3[,8]
+C3 <- 0.70*myData3[, 1]+0.02*myData3[, 2]-0.01*myData3[, 3]-0.25*myData3[,4]-0.54*myData3[,5]+0.11*myData3[,6]+0.32*myData3[,7]-0.01*myData3[,8]
 C4 <- data$Attrition
 
 myData4 <- data.frame(C1, C2, C3, C4)
@@ -182,12 +182,12 @@ eps <- function(mydata) {
 }
 eps_value <- eps(test_set) 
 eps_value
-eps_value <- 3.8
+eps_value <- 4.3
 
 # To see the best value for eps
 library(dbscan)
 kNNdistplot(test_set, k=4+1)
-abline(h=4, col='green')
+abline(h=4.5, col='green')
 abline(h=eps_value, col=2, lty=5)
 
 # Chart of clusters
@@ -202,8 +202,9 @@ noise
 data2 <- test_set[-noise,]
 eps_noise <- eps(data2)
 eps_noise
-eps_noise <- 4.2
+eps_noise <- 4.5
 db2 <- dbscan(data2, eps=eps_noise, minPts=ncol(data2)+1)
+db2
 hullplot(data2, db2)
 plot(data2, col=db1$cluster)
 
